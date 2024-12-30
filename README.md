@@ -6,11 +6,11 @@
 
 ## *Tech Stack*
 
-- **Frontend**: JavaScript (React)
-- **Backend**: JavaScript (Node.js with Express)
-- **Database**: MongoDB
-- **Authentication**: JWT (JSON Web Tokens)
-- **Deployment**: Local hosting (for development purposes), planned deployment on cloud platforms (e.g., Heroku, AWS)
+- **Frontend**: HTML, JavaScript, CSS
+- **Backend**: Python (Flask)
+- **Database**: SQLite
+- **Authentication**: Flask-Login for user sessions
+- **Deployment**: Local hosting only (for development and testing purposes)
 
 ---
 
@@ -40,53 +40,52 @@
 
 1. *Clone the repository*:
    ```bash
-   git clone [(https://github.com/BenieShann/TechConnect)]
+   git clone https://github.com/BenieShann/TechConnect
    cd TechConnect
    ```
 
-2. *Install dependencies*:
-   - For the frontend:
-     ```bash
-     cd client
-     npm install
-     ```
+2. *Set up a virtual environment* (optional but recommended):
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. *Install dependencies*:
    - For the backend:
      ```bash
      cd server
-     npm install
+     pip install -r requirements.txt
      ```
 
-3. *Set up environment variables*:
+4. *Set up environment variables*:
    Create a `.env` file in the `server` directory with the following environment variables:
    ```bash
-   MONGODB_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret
-   PORT=5000
+   FLASK_APP=app.py
+   FLASK_ENV=development
+   SECRET_KEY=your_flask_secret_key
+   DATABASE_URL=sqlite:///tech_connect.db
    ```
 
-4. *Start the development servers*:
-   - Frontend:
-     ```bash
-     cd client && npm start
-     ```
+5. *Start the development servers*:
+   - Frontend: Open `client/index.html` in your browser to access the frontend.
    - Backend:
      ```bash
-     cd server && npm run dev
+     cd server && flask run
      ```
 
 ---
 
 ## *Usage*
 
-Once the servers are running, visit `http://localhost:3000` in your browser to access the application.
+Once the servers are running, visit `http://localhost:5000` for the backend and open the frontend by double-clicking on `client/index.html` in your browser.
 
 ---
 
-## **API Documentation**
+## *API Documentation*
 
-### **Authentication Routes**
+### *Authentication Routes*
 
-- **POST /api/auth/register**: Registers a new user.
+- *POST /api/auth/register*: Registers a new user.
   - Request Body:
     ```json
     {
@@ -106,7 +105,7 @@ Once the servers are running, visit `http://localhost:3000` in your browser to a
     }
     ```
 
-- **POST /api/auth/login**: Authenticates a user and returns a JWT token.
+- *POST /api/auth/login*: Authenticates a user and returns a JWT token.
   - Request Body:
     ```json
     {
@@ -122,7 +121,7 @@ Once the servers are running, visit `http://localhost:3000` in your browser to a
     }
     ```
 
-### **Job Postings Routes**
+### *Job Postings Routes*
 
 - **GET /api/jobs**: Fetches all job postings.
   - Response:
@@ -138,15 +137,15 @@ Once the servers are running, visit `http://localhost:3000` in your browser to a
     ]
     ```
 
-- **POST /api/jobs/post**: Allows employers to post a new job.
+- *POST /api/jobs/post*: Allows employers to post a new job.
   - Request Body:
     ```json
     {
       "title": "Backend Developer",
       "company": "Tech Solutions",
-      "description": "Developing APIs using Node.js and MongoDB",
+      "description": "Developing APIs using Flask and SQLite",
       "location": "Remote",
-      "skills": ["node", "mongodb", "express"]
+      "skills": ["python", "flask", "sqlite"]
     }
     ```
   - Response:
@@ -156,9 +155,9 @@ Once the servers are running, visit `http://localhost:3000` in your browser to a
     }
     ```
 
-### **Job Applications Routes**
+### *Job Applications Routes*
 
-- **POST /api/applications**: Apply for a job.
+- *POST /api/applications*: Apply for a job.
   - Request Body:
     ```json
     {
@@ -188,7 +187,7 @@ Once the servers are running, visit `http://localhost:3000` in your browser to a
 
 ## *Contributing*
 
-We welcome contributions! To contribute:
+I welcome contributions! To contribute:
 
 1. Fork the repository
 2. Create a new branch for your feature or bug fix
@@ -205,6 +204,4 @@ This project is licensed under the MIT License.
 
 ## *Contact*
 
-For any questions or feedback, please reach out to [Shann -0115957511].
-
----
+For any questions or feedback, please reach out to [Shann - 0115957511].
