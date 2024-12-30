@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Welcome, {{ current_user.username }}!</h2>
+    <p>Here are some job listings you might be interested in:</p>
+    
+    <!-- Display Job Listings -->
+    <div class="row">
+        {% if jobs %}
+            {% for job in jobs %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ job.title }}</h5>
+                            <p class="card-text">{{ job.description[:100] }}...</p>
+                            <a href="{{ url_for('apply_for_job', job_id=job.id) }}" class="btn btn-primary">Apply</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No jobs available at the moment.</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
