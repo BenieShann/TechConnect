@@ -7,7 +7,7 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 
 # Define the application factory function
-def create_app():
+def create_app(config_name='development'):
     # Create the Flask app instance
     app = Flask(__name__)
     
