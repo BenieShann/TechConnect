@@ -1,12 +1,13 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from .models import User 
 
 # Initialize database and login manager instances
 db = SQLAlchemy()
 login_manager = LoginManager()
 
-# Define the application factory function
+# Defines the application factory function
 def create_app(config_name='development'):
     # Create the Flask app instance
     app = Flask(__name__)
