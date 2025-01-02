@@ -1,9 +1,9 @@
 from flask import render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
-from . import app, db
+from . import db
 from .models import User, Job, Application
-from .forms import LoginForm, RegisterForm  # Optional: Assuming you are using WTForms for form validation
+from .forms import LoginForm, RegisterForm  #WTForms for form validation
 
 # Home Page Route
 @app.route('/')
@@ -15,7 +15,7 @@ def home():
 # Login Route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginForm()  # Assuming you are using WTForms to handle the form
+    form = LoginForm()  #WTForms to handle the form
     if form.validate_on_submit():  # If the form is submitted and valid
         user = User.query.filter_by(username=form.username.data).first()  # Retrieve the user by username
         if user and check_password_hash(user.password, form.password.data):  # Validate password
@@ -29,7 +29,7 @@ def login():
 # Register Route
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    form = RegisterForm()  # Assuming you are using WTForms to handle the form
+    form = RegisterForm()  # WTForms to handle the form
     if form.validate_on_submit():  # If the form is submitted and valid
         # Hash the password before storing
         hashed_password = generate_password_hash(form.password.data, method='sha256')
@@ -50,7 +50,7 @@ def logout():
 
 # Profile Page (Optional) - Example of a route requiring login
 @app.route('/profile')
-@login_required  # Ensure that only logged-in users can access this route
+@login_required  # Ensures that only logged-in users can access this route
 def profile():
     # Display user's personal details and job applications
     applications = Application.query.filter_by(user_id=current_user.id).all()
