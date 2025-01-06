@@ -1,9 +1,11 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_migrate import Migrate
 
 # Initialize database and login manager instances
 db = SQLAlchemy()
+migrate = Migrate()
 login_manager = LoginManager()
 
 # Defines the application factory function
@@ -19,6 +21,7 @@ def create_app(config_name='development'):
     # Initialize database and login manager with the app
     db.init_app(app)
     login_manager.init_app(app)
+    migrate.init_app(app, db)
 
     from .routes import register_routes
     register_routes(app)

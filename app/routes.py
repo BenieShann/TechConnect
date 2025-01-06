@@ -3,7 +3,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from . import db
 from .models import User, Job, Application
-from .forms import LoginForm, RegisterForm  #WTForms for form validation
+from .forms import LoginForm, RegisterForm  # WTForms for form validation
 
 def register_routes(app):
 
@@ -11,13 +11,13 @@ def register_routes(app):
     @app.route('/')
     def home():
         # Display jobs (or any other relevant data)
-        jobs = Job.query.all()  # Example of retrieving all jobs
+        jobs = Job.query.all()  # Retrieve all jobs
         return render_template('home.html', jobs=jobs)
 
     # Login Route
     @app.route('/login', methods=['GET', 'POST'])
     def login():
-        form = LoginForm()  #WTForms to handle the form
+        form = LoginForm()  # WTForms to handle the form
         if form.validate_on_submit():  # If the form is submitted and valid
             user = User.query.filter_by(username=form.username.data).first()  # Retrieve the user by username
             if user and check_password_hash(user.password, form.password.data):  # Validate password
@@ -50,7 +50,7 @@ def register_routes(app):
         flash('You have been logged out.', 'info')
         return redirect(url_for('home'))  # Redirect to the homepage
 
-    # Profile Page - Example of a route requiring login
+    # Profile Page Route
     @app.route('/profile')
     @login_required  # Ensures that only logged-in users can access this route
     def profile():
@@ -70,3 +70,46 @@ def register_routes(app):
         flash(f'You have successfully applied for the job: {job.title}', 'success')
         return redirect(url_for('home'))  # Redirect to the homepage after applying
 
+    # Route to Add Test Jobs to the Database
+    @app.route('/add_jobs')
+    def add_jobs():
+        # Create test job entries
+        job1 = Job(
+            title="Software Engineer",
+            description="Develop and maintain software solutions.",
+            company_name="TechCorp Solutions",
+            location="Nairobi, Kenya",
+            job_type="Full-time",
+            salary="KSh 100,000 - 120,000 per month"
+        )
+        job2 = Job(
+            title="Full Stack Developer",
+            description="Design and build scalable web applications.",
+            company_name="Innovate Tech",
+            location="Mombasa, Kenya",
+            job_type="Full-time",
+            salary="KSh 90,000 - 110,000 per month"
+        )
+        job3 = Job(
+            title="DevOps Engineer",
+            description="Maintain and improve CI/CD pipelines.",
+            company_name="Tech Innovators",
+            location="Nairobi, Kenya",
+            job_type="Full-time",
+            salary="KSh 95,000 - 115,000 per month"
+        )
+        job4 = Job(
+            title="Data Scientist",
+            description="Analyze and model data to generate insights.",
+            company_name="DataTech Solutions",
+            location="Remote",
+            job_type="Contract",
+            salary="KSh 80,000 - 100,000 per month"
+        )
+
+        # Add jobs to the session and commit to the database
+        db.session.add_all([job1, job2, job3, job4])
+        db.session.commit()
+
+        flash('Test jobs added successfully!', 'success')
+        return redirect(url_for('home'))
