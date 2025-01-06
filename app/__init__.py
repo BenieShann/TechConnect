@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from .models import User 
 
 # Initialize database and login manager instances
 db = SQLAlchemy()
@@ -20,14 +19,21 @@ def create_app(config_name='development'):
     # Initialize database and login manager with the app
     db.init_app(app)
     login_manager.init_app(app)
-    
+
+    from .routes import register_routes
+    register_routes(app)
+
     # Set up the login view for unauthenticated users
     login_manager.login_view = 'login'
     login_manager.login_message_category = 'info'  # Customize the flash message category
+
+    # Add the user_loader function here
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(ser_id))  
     
     # Create the database tables
     with app.app_context():
-        from . import routes  # Import routes within the app context
         db.create_all()
 
     return app
