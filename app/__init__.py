@@ -18,16 +18,18 @@ def create_app(config_name='development'):
     # Application configuration
     app.config['SECRET_KEY'] = '24f574e64621167ed13380cb37c44b09a93e79a65c5ff55b'  # Secure key
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tech_connect.db'  # Database URI
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Suppress warnings for SQLAlchemy
-
-    # Flask-Mail configuration
-    app.config['MAIL_SERVER'] = 'smtp.example.com'  # Replace with your SMTP server
-    app.config['MAIL_PORT'] = 587  # Example port
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Suppress app.config['MAIL_DEFAULT_SENDER'] = 'noreply@techconnect.com' warnings for SQLAlchemy
+    
+    # Add Mailtrap SMTP credentials for testing email functionality
+    app.config['MAIL_SERVER']='sandbox.smtp.mailtrap.io'
+    app.config['MAIL_PORT'] = 2525
+    app.config['MAIL_USERNAME'] = '6756e0883a6b62'
+    app.config['MAIL_PASSWORD'] = '345c80f0a4dc27'
     app.config['MAIL_USE_TLS'] = True
-    app.config['MAIL_USERNAME'] = 'your-email@example.com'  # Replace with your email
-    app.config['MAIL_PASSWORD'] = 'your-email-password'  # Replace with your email password
-    app.config['MAIL_DEFAULT_SENDER'] = 'noreply@example.com'  # Default sender
+    app.config['MAIL_USE_SSL'] = False
+    app.config['MAIL_DEFAULT_SENDER'] = 'noreply@techconnect.com' 
 
+    
     # Initialize database, mail, login manager with the app
     db.init_app(app)
     login_manager.init_app(app)
