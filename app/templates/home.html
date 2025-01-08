@@ -1,21 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Welcome, {{ current_user.username }}!</h2>
-    <p>Here are some job listings you might be interested in:</p>
+    <h2 class="text-center mb-4">Welcome, {{ current_user.username }}!</h2>
+    <p class="text-center mb-4">Here are some job listings you might be interested in:</p>
     
     <!-- Display Job Listings -->
     <div class="job-list">
         {% if jobs %}
-            {% for job in jobs %}
-                <div class="job-card">
-                    <h3>{{ job.title }}</h3>
-                    <p>{{ job.description[:150] }}...</p>
-                    <p class="company"><strong>Company:</strong> {{ job.company_name }}</p>
-                    <p class="category"><strong>Category:</strong> {{ job.category }}</p>
-                    <a href="{{ url_for('apply_for_job', job_id=job.id) }}" class="btn btn-primary">Apply</a>
-                </div>
-            {% endfor %}
+            <div class="row justify-content-center">
+                {% for job in jobs %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card job-card">
+                            <div class="card-body">
+                                <h3 class="card-title">{{ job.title }}</h3>
+                                <p class="card-text">{{ job.description[:150] }}...</p>
+                                <p class="company"><strong>Company:</strong> {{ job.company_name }}</p>
+                                <p class="category"><strong>Category:</strong> {{ job.category }}</p>
+                                <a href="{{ url_for('apply_for_job', job_id=job.id) }}" class="btn btn-primary w-100">Apply</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         {% else %}
             <p>No jobs available at the moment.</p>
         {% endif %}
