@@ -1,44 +1,49 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Login</h2>
-    <form method="POST">
-        <!-- CSRF Token for form protection (if using Flask-WTF) -->
-        {{ form.hidden_tag() }}
+    <h2 class="text-center mb-4">Login</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST">
+                        <!-- CSRF Token for form protection (if using Flask-WTF) -->
+                        {{ form.hidden_tag() }}
 
-        <!-- Username Field -->
-        <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" name="username" required value="{{ form.username.data }}">
-        </div>
+                        <!-- Username Field -->
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required value="{{ form.username.data }}">
+                        </div>
 
-        <!-- Password Field -->
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
+                        <!-- Password Field -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
 
-        <!-- Flash messages for errors or success -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div class="alert alert-{{ category }}">
-                    {% for category, message in messages %}
-                        <p>{{ message }}</p>
-                    {% endfor %}
+                        <!-- Flash messages for errors or success -->
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                <div class="alert alert-{{ category }}">
+                                    {% for category, message in messages %}
+                                        <p>{{ message }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
                 </div>
-            {% endif %}
-        {% endwith %}
+            </div>
+        </div>
+    </div>
 
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-
-    <p class="mt-3">
-        Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.
-    </p>
-
-    <!-- Forgot Password Link -->
-    <p class="mt-2">
-        <a href="{{ url_for('forgot_password') }}">Forgot your password?</a>
-    </p>
+    <!-- Links for Register and Forgot Password -->
+    <div class="text-center mt-3">
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.</p>
+        <p><a href="{{ url_for('forgot_password') }}">Forgot your password?</a></p>
+    </div>
 {% endblock %}
