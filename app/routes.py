@@ -104,9 +104,24 @@ def register_routes(app):
     @login_required
     def apply_for_job(job_id):
         job = Job.query.get_or_404(job_id)
-        new_application = Application(user_id=current_user.id, job_id=job.id)
-        db.session.add(new_application)
-        db.session.commit()
+        form = ApplicationForm()
+
+        if form.validate_on_submit():
+            # Save the uploaded resume
+            resume = form.resume.data
+            resume_filename = secure_filename(resume.filename)
+            resume_path = os.path.join('uploads', resume_filename) 
+            resume.save(resume_path)
+
+            # Create a new application
+            application = Application(
+                user_id=current_user.id,
+                job_id=job.id,
+                cover_letter=form.cover_letter.data,
+                resume_path=resume_path
+            )
+            db.session.add(application)
+            db.session.commit()
         flash(f'You have successfully applied for the job: {job.title}', 'success')
         return redirect(url_for('home'))
 
