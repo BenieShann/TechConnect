@@ -30,107 +30,107 @@ def register_routes(app):
     @app.route('/add_jobs')
     def add_jobs():
         try:
-        # Adding 10 test jobs to showcase
-        job1 = Job(
-            title="Software Engineer",
-            description="Develop and maintain software solutions.",
-            company_name="TechCorp Solutions",
-            location="Nairobi, Kenya",
-            job_type="Full-time",
-            salary="KSh 100,000 - 120,000 per month",
-            category="Software Development"
-        )
-        job2 = Job(
-            title="Data Scientist",
-            description="Analyze large datasets to extract insights and predictions.",
-            company_name="Holberton School",
-            location="Nairobi, Kenya",
-            job_type="Full-time",
-            salary="KSh 80,000 - 100,000 per month",
-            category="Data Science"
-        )
-        job3 = Job(
-            title="Full Stack Developer",
-            description="Develop both frontend and backend of web applications.",
-            company_name="Innovate Tech",
-            location="Mombasa, Kenya",
-            job_type="Full-time",
-            salary="KSh 90,000 - 110,000 per month",
-            category="Software Development"
-        )
-        job4 = Job(
-            title="UX/UI Designer",
-            description="Design user-friendly interfaces and improve user experiences.",
-            company_name="DesignLabs",
-            location="Nairobi, Kenya",
-            job_type="Part-time",
-            salary="KSh 60,000 - 80,000 per month",
-            category="Design"
-        )
-        job5 = Job(
-            title="Product Manager",
-            description="Manage the development and launch of new products.",
-            company_name="TechCorp Solutions",
-            location="Nairobi, Kenya",
-            job_type="Full-time",
-            salary="KSh 120,000 - 140,000 per month",
-            category="Product Management"
-        )
-        job6 = Job(
-            title="Business Analyst",
-            description="Analyze business needs and provide data-driven recommendations.",
-            company_name="Holberton School",
-            location="Mombasa, Kenya",
-            job_type="Full-time",
-            salary="KSh 70,000 - 90,000 per month",
-            category="Business Analysis"
-        )
-        job7 = Job(
-            title="DevOps Engineer",
-            description="Ensure smooth deployment and integration of applications.",
-            company_name="Tech Corp",
-            location="Nairobi, Kenya",
-            job_type="Full-time",
-            salary="KSh 100,000 - 130,000 per month",
-            category="DevOps"
-        )
-        job8 = Job(
-            title="Software Architect",
-            description="Design and develop software solutions for large-scale applications.",
-            company_name="Innovate Tech",
-            location="Mombasa, Kenya",
-            job_type="Full-time",
-            salary="KSh 130,000 - 160,000 per month",
-            category="Software Development"
-        )
-        job9 = Job(
-            title="QA Engineer",
-            description="Test software to ensure high-quality releases.",
-            company_name="DesignLabs",
-            location="Nairobi, Kenya",
-            job_type="Full-time",
-            salary="KSh 70,000 - 90,000 per month",
-            category="Quality Assurance"
-        )
-        job10 = Job(
-            title="Digital Marketing Specialist",
-            description="Manage online marketing campaigns and improve brand visibility.",
-            company_name="TechCorp Solutions",
-            location="Nairobi, Kenya",
-            job_type="Full-time",
-            salary="KSh 80,000 - 100,000 per month",
-            category="Marketing"
-        )
+            # Adding 10 test jobs to showcase
+            job1 = Job(
+                title="Software Engineer",
+                description="Develop and maintain software solutions.",
+                company_name="TechCorp Solutions",
+                location="Nairobi, Kenya",
+                job_type="Full-time",
+                salary="KSh 100,000 - 120,000 per month",
+                category="Software Development"
+            )
+            job2 = Job(
+                title="Data Scientist",
+                description="Analyze large datasets to extract insights and predictions.",
+                company_name="Holberton School",
+                location="Nairobi, Kenya",
+                job_type="Full-time",
+                salary="KSh 80,000 - 100,000 per month",
+                category="Data Science"
+            )
+            job3 = Job(
+                title="Full Stack Developer",
+                description="Develop both frontend and backend of web applications.",
+                company_name="Innovate Tech",
+                location="Mombasa, Kenya",
+                job_type="Full-time",
+                salary="KSh 90,000 - 110,000 per month",
+                category="Software Development"
+            )
+            job4 = Job(
+                title="UX/UI Designer",
+                description="Design user-friendly interfaces and improve user experiences.",
+                company_name="DesignLabs",
+                location="Nairobi, Kenya",
+                job_type="Part-time",
+                salary="KSh 60,000 - 80,000 per month",
+                category="Design"
+            )
+            job5 = Job(
+                title="Product Manager",
+                description="Manage the development and launch of new products.",
+                company_name="TechCorp Solutions",
+                location="Nairobi, Kenya",
+                job_type="Full-time",
+                salary="KSh 120,000 - 140,000 per month",
+                category="Product Management"
+            )
+            job6 = Job(
+                title="Business Analyst",
+                description="Analyze business needs and provide data-driven recommendations.",
+                company_name="Holberton School",
+                location="Mombasa, Kenya",
+                job_type="Full-time",
+                salary="KSh 70,000 - 90,000 per month",
+                category="Business Analysis"
+            )
+            job7 = Job(
+                title="DevOps Engineer",
+                description="Ensure smooth deployment and integration of applications.",
+                company_name="Tech Corp",
+                location="Nairobi, Kenya",
+                job_type="Full-time",
+                salary="KSh 100,000 - 130,000 per month",
+                category="DevOps"
+            )
+            job8 = Job(
+                title="Software Architect",
+                description="Design and develop software solutions for large-scale applications.",
+                company_name="Innovate Tech",
+                location="Mombasa, Kenya",
+                job_type="Full-time",
+                salary="KSh 130,000 - 160,000 per month",
+                category="Software Development"
+            )
+            job9 = Job(
+                title="QA Engineer",
+                description="Test software to ensure high-quality releases.",
+                company_name="DesignLabs",
+                location="Nairobi, Kenya",
+                job_type="Full-time",
+                salary="KSh 70,000 - 90,000 per month",
+                category="Quality Assurance"
+            )
+            job10 = Job(
+                title="Digital Marketing Specialist",
+                description="Manage online marketing campaigns and improve brand visibility.",
+                company_name="TechCorp Solutions",
+                location="Nairobi, Kenya",
+                job_type="Full-time",
+                salary="KSh 80,000 - 100,000 per month",
+                category="Marketing"
+            )
 
-        # Adding all jobs to the session
-        db.session.add_all([job1, job2, job3, job4, job5, job6, job7, job8, job9, job10])
-        db.session.commit()
+            # Adding all jobs to the session
+            db.session.add_all([job1, job2, job3, job4, job5, job6, job7, job8, job9, job10])
+            db.session.commit()
 
-        flash('Test jobs added successfully!', 'success')
-    except Exception as e:
-        flash(f"Error adding jobs: {e}", "danger")
+            flash('Test jobs added successfully!', 'success')
+        except Exception as e:
+            flash(f"Error adding jobs: {e}", "danger")
 
-    return redirect(url_for('home'))
+        return redirect(url_for('home'))
          
     # Apply for Job Route
     @app.route('/apply/<int:job_id>', methods=['POST'])
