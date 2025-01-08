@@ -24,3 +24,12 @@ class ResetPasswordForm(FlaskForm):
     confirm_password = PasswordField('Confirm New Password', 
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
+    
+class ApplicationForm(FlaskForm):
+    full_name = StringField('Full Name', validators=[DataRequired()])
+    email = StringField('Email Address', validators=[DataRequired(), Email()])
+    phone = StringField('Phone Number', validators=[DataRequired()])
+    cover_letter = TextAreaField('Cover Letter', validators=[DataRequired()])
+    submit = SubmitField('Submit Application')
+
+
