@@ -113,16 +113,83 @@ def register_routes(app):
     # Route to Add Test Jobs to the Database
     @app.route('/add_jobs')
     def add_jobs():
+        # Add 7 new jobs to showcase
         job1 = Job(
             title="Software Engineer",
             description="Develop and maintain software solutions.",
             company_name="TechCorp Solutions",
             location="Nairobi, Kenya",
             job_type="Full-time",
-            salary="KSh 100,000 - 120,000 per month"
+            salary="KSh 100,000 - 120,000 per month",
+            category="Software Development"
         )
-        # Add more jobs as needed...
-        db.session.add(job1)
+        job2 = Job(
+            title="Data Scientist",
+            description="Analyze large datasets to extract insights and predictions.",
+            company_name="Holberton School",
+            location="Nairobi, Kenya",
+            job_type="Full-time",
+            salary="KSh 80,000 - 100,000 per month",
+            category="Data Science"
+        )
+        job3 = Job(
+            title="Full Stack Developer",
+            description="Build both client and server-side applications.",
+            company_name="ALX Africa",
+            location="Remote",
+            job_type="Part-time",
+            salary="KSh 70,000 - 90,000 per month",
+            category="Software Development"
+        )
+        job4 = Job(
+            title="Mobile App Developer",
+            description="Design and develop mobile applications for Android and iOS.",
+            company_name="TechConnect",
+            location="Lagos, Nigeria",
+            job_type="Contract",
+            salary="KSh 60,000 - 80,000 per month",
+            category="Mobile Development"
+        )
+        job5 = Job(
+            title="Cybersecurity Analyst",
+            description="Monitor, detect, and protect against cyber threats.",
+            company_name="Holberton School",
+            location="Remote",
+            job_type="Full-time",
+            salary="KSh 120,000 - 140,000 per month",
+            category="Cybersecurity"
+        )
+        job6 = Job(
+            title="DevOps Engineer",
+            description="Automate infrastructure and deployment processes.",
+            company_name="ALX Africa",
+            location="Nairobi, Kenya",
+            job_type="Full-time",
+            salary="KSh 100,000 - 130,000 per month",
+            category="DevOps"
+        )
+        job7 = Job(
+            title="Cloud Solutions Architect",
+            description="Design and implement cloud computing solutions.",
+            company_name="TechConnect",
+            location="Lagos, Nigeria",
+            job_type="Full-time",
+            salary="KSh 150,000 - 180,000 per month",
+            category="Cloud Computing"
+        )
+        job8 = Job(
+            title="UI/UX Designer",
+            description="Design user interfaces and improve user experience.",
+            company_name="TechCorp Solutions",
+            location="Nairobi, Kenya",
+            job_type="Contract",
+            salary="KSh 50,000 - 70,000 per month",
+            category="UI/UX Design"
+        )
+
+        # Add all jobs to the session
+        db.session.add_all([job1, job2, job3, job4, job5, job6, job7, job8])
         db.session.commit()
+
         flash('Test jobs added successfully!', 'success')
         return redirect(url_for('home'))
