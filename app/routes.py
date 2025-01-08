@@ -106,17 +106,6 @@ def register_routes(app):
     def profile():
         applications = Application.query.filter_by(user_id=current_user.id).all()
         return render_template('profile.html', applications=applications)
-
-    # Apply for Job Route
-    @app.route('/apply/<int:job_id>', methods=['POST'])
-    @login_required
-    def apply_for_job(job_id):
-        job = Job.query.get_or_404(job_id)
-        new_application = Application(user_id=current_user.id, job_id=job.id)
-        db.session.add(new_application)
-        db.session.commit()
-        flash(f'You have successfully applied for the job: {job.title}', 'success')
-        return redirect(url_for('home'))
         
     # Route to Add Test Jobs to the Database
     @app.route('/add_jobs')
