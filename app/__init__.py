@@ -29,16 +29,16 @@ def create_app(config_name='development'):
     app.config['MAIL_USE_SSL'] = False
     app.config['MAIL_DEFAULT_SENDER'] = 'noreply@techconnect.com' 
 
+
+    from .routes import routes
+    app.register_blueprint(routes)
     
     # Initialize database, mail, login manager with the app
     db.init_app(app)
     login_manager.init_app(app)
     migrate.init_app(app, db)
     mail.init_app(app)
-
-    from .routes import register_routes
-    register_routes(app)
-
+    
     # Set up the login view for unauthenticated users
     login_manager.login_view = 'login'
     login_manager.login_message_category = 'info'  # Customize the flash message category
