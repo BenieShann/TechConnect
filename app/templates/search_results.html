@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- Search Results Heading -->
+  <h2 class="text-center my-4">Search Results for "{{ query }}"</h2>
+
+  <!-- Search Form for Refining Query -->
+  <form action="/search" method="GET" class="mb-4 text-center">
+    <input type="text" name="query" value="{{ query }}" class="form-control d-inline-block w-50" placeholder="Refine your search..." required>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+
+  <!-- Display Results -->
+  <div class="row g-4">
+    {% if results %}
+      {% for result in results %}
+        <div class="col-md-4">
+          <div class="card job-card shadow-sm">
+            <div class="card-body">
+              <h3 class="card-title text-primary">{{ result.title }}</h3>
+              <p class="card-text text-muted">{{ result.description[:150] }}...</p>
+              <p class="company"><strong>Company:</strong> {{ result.company_name }}</p>
+              <p class="category"><strong>Category:</strong> {{ result.category }}</p>
+              <a href="{{ url_for('apply_for_job', job_id=result.id) }}" class="btn btn-success w-100">Apply</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="text-center text-muted">No results found for "{{ query }}". Please try again with a different keyword.</p>
+    {% endif %}
+  </div>
+
+  <!-- Back to Home Link -->
+  <div class="text-center mt-4">
+    <a href="{{ url_for('home') }}" class="btn btn-secondary">Back to Job Listings</a>
+  </div>
+{% endblock %}
+
