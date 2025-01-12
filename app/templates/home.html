@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  <!-- home.html -->
+  <form action="/search" method="GET">
+  <input type="text" name="query" placeholder="Search..." required>
+  <button type="submit">Search</button>
+  </form>
+ 
     <h2 class="text-center mb-4">Welcome, {{ current_user.username }}!</h2>
     <p class="text-center mb-4">Here are some job listings you might be interested in:</p>
     
