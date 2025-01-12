@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, request, flash
+from flask import render_template, redirect, url_for, request, flash, Blueprint
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
@@ -11,6 +11,22 @@ from werkzeug.utils import secure_filename
 
 # Serializer for generating secure tokens
 serializer = URLSafeTimedSerializer("SECRET_KEY")
+
+# Creating a Blueprint
+routes = Blueprint('routes', __name__)
+
+# Search route
+@routes.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query', '').strip()  # Gets the search query
+    if query:
+        # Perform a search in your database
+        # Filter job posts by title or description
+        results = Job.query.filter(Job.title.ilike(f"%{query}%")).all()
+    else:
+        results = []  # No results if the query is empty
+
+    return render_template('search_results.html', query=query, results=results)
 
 def register_routes(app):
 
