@@ -5,12 +5,12 @@ from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 from flask_mail import Message
 from . import db, mail
 from .models import User, Job, Application
-from .forms import LoginForm, RegisterForm, ForgotPasswordForm, ResetPasswordForm  # Add new forms for forgot/reset password
-import os
+from .forms import LoginForm, RegisterForm, ForgotPasswordForm, ResetPasswordForm 
+import os, logging
 from werkzeug.utils import secure_filename
 
 # Serializer for generating secure tokens
-serializer = URLSafeTimedSerializer("SECRET_KEY")
+serializer = URLSafeTimedSerializer('24f574e64621167ed13380cb37c44b09a93e79a65c5ff55b')
 
 # Creating a Blueprint
 routes = Blueprint('routes', __name__)
