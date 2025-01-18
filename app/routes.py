@@ -15,19 +15,6 @@ serializer = URLSafeTimedSerializer('24f574e64621167ed13380cb37c44b09a93e79a65c5
 # Creating a Blueprint
 routes = Blueprint('routes', __name__)
 
-# Search route
-@routes.route('/search', methods=['GET'])
-def search():
-    query = request.args.get('query', '').strip()  # Gets the search query
-    if query:
-        # Perform a search in your database
-        # Filter job posts by title or description
-        results = Job.query.filter(Job.title.ilike(f"%{query}%")).all()
-    else:
-        results = []  # No results if the query is empty
-
-    return render_template('search_results.html', query=query, results=results)
-
 def register_routes(app):
 
     # Home Page Route
@@ -42,6 +29,19 @@ def register_routes(app):
             flash(f"Error retrieving jobs: {e}", "danger")
             return render_template('home.html', jobs=[])
 
+    
+    # Search route
+    @routes.route('/search', methods=['GET'])
+    def search():
+        query = request.args.get('query', '').strip()  # Gets the search query
+        if query:
+            # Perform a search in your database
+            # Filter job posts by title or description
+            results = Job.query.filter(Job.title.ilike(f"%{query}%")).all()
+        else:
+            results = []  # No results if the query is empty
+        return render_template('search_results.html', query=query, results=results)
+        
     # Login Route
     @app.route('/login', methods=['GET', 'POST'])
     def login():
