@@ -62,6 +62,18 @@ class Routes:
 
         #     return render_template('search_results.html', query=query, results=results)
 
+        @app.route('/jobs')
+        def jobs():
+            return render_template('jobs.html')
+
+        @app.route('/about')
+        def about():
+            return render_template('about.html')
+
+        @app.route('/contact')
+        def contact():
+            return render_template('contact.html')
+
         # Login Route
         @app.route('/login', methods=['GET', 'POST'])
         def login():
