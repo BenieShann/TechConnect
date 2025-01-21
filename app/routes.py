@@ -16,8 +16,6 @@ serializer = URLSafeTimedSerializer('24f574e64621167ed13380cb37c44b09a93e79a65c5
 routes = Blueprint('routes', __name__)
 
 
-
-
 class Routes:
     def __init__(self, app):
         self.app = app

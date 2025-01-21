@@ -6,17 +6,21 @@
     <title>{{ title | default('TechConnect') }}</title>
     <!-- Link to external stylesheets (e.g., Bootstrap or custom styles) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
         /* General Styles */
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #d3d3d3;
-            margin: 0;
-            padding: 0;
+        background-image: url('{{ url_for('static', filename='images/background-body.jpg') }}');    
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
         }
 
         header {
-            background-color: #343a40;
+            background-color:rgb(2, 4, 7);
             color: #fff;
             padding: 10px 0;
         }
@@ -27,22 +31,22 @@
         }
 
         footer {
-            background-color: #f8f9fa;
+            background-color:rgb(43, 55, 66);
             padding: 20px;
             text-align: center;
         }
 
         h2 {
             text-align: center;
-            margin-bottom: 30px;
-            color: #333;
+            margin-bottom: 600px;
+            color: #000;
         }
 
         .job-card {
-            background-color: white;
+            background-image: url('{{ url_for('static', filename='images/background-body.jpg') }}');
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgb(247, 12, 129);
             transition: box-shadow 0.3s;
             height: 100%;
         }
@@ -52,31 +56,26 @@
         }
 
         .job-card h3 {
-            font-size: 20px;
-            color: #333;
+            font-size: 30px;
+            color: #000;
             margin-bottom: 10px;
         }
 
         .job-card p {
-            font-size: 16px;
-            color: #555;
+            font-size: 18px;
+            color: #111;
             margin-bottom: 10px;
         }
 
         .job-card .company {
             font-weight: bold;
-            color: #4CAF50;
+            color:rgb(1, 9, 10);
         }
 
-        .job-card .category {
-            font-size: 14px;
-            color: #888;
-        }
-
-        .job-card a {
+            .job-card a {
             text-decoration: none;
-            color: #fff;
-            background-color: #4CAF50;
+            color: #000;
+            background-color:rgb(3, 126, 109);
             padding: 10px;
             border-radius: 5px;
             font-weight: bold;
@@ -87,61 +86,86 @@
         }
 
         .job-card a:hover {
-            background-color: #45a049;
+            background-color:rgb(73, 11, 40);
         }
     </style>
 </head>
 <body>
     <!-- Header Section -->
-    <header>
-        <div class="container">
-            <h1>TechConnect</h1>
-        </div>
-    </header>
 
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="navbar-container d-flex justify-content-between w-100">
             <!-- Logo -->
             <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
-                <img src="{{ url_for('static', filename='images/TechConnect logo.jpg') }}" alt="TechConnect Logo" class="logo me-2" style="height: 100px;">
+                <img src="{{ url_for('static', filename='images/TechConnect logo.jpg') }}" alt="TechConnect Logo" class="logo me-2" style="height: 120px;">
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <!-- Navbar links (About, Jobs, Contact) and Links at the far right (Register, Login) -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <form class="d-flex" action="/search" method="GET">
+                    <input class="form-control me-2" type="search" name="query" placeholder="Search..." aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                                 
+                <!-- Left side links (About, Jobs, Contact) -->
+                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('jobs') }}">Jobs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                </li>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <!-- Navigation Links -->
+                <!-- Right side links (Register, Login) -->
+                {% if current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('jobs') }}">Jobs</a>
+                        <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                        <a class="nav-link" href="{{ url_for('register') }}">Register</a>
                     </li>
-                    {% if current_user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('register') }}">Register</a>
-                        </li>
-                    {% endif %}
-                </ul>
+                {% endif %}
+            </ul>
+        </div>
+        
+        <!-- Hamburger Menu for Small Screens -->
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+
+ <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to TechConnect</h1>
+            <p>Your gateway to the best tech jobs.</p>
+            <div class="hero-buttons">
+                <a href="{{ url_for('jobs') }}" class="btn btn-primary">Explore Jobs</a>
+                <a href="{{ url_for('register') }}" class="btn btn-secondary">Get Started</a>
             </div>
         </div>
-    </nav>
+    </section>
 
     <!-- Main Content -->
     <main>
@@ -150,13 +174,84 @@
         </div>
     </main>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2025 TechConnect. All Rights Reserved.</p>
-    </footer>
+         <!-- Job Functions Section -->
+<!-- Job Functions Section -->
+<section class="job-functions" aria-label="TechConnect Job Categories" 
+         style="background-image: url('{{ url_for('static', filename='images/background-section.jpg') }}'); 
+                background-size: cover; 
+                background-position: center; 
+                padding: 40px 20px; 
+                color: black;">
+
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <h2>Explore jobs in Kenya by TechConnect</h2>
+
+    <div class="categories container">
+        <div class="row">
+            <!-- First Column -->
+            <ul class="col-md-4">
+                <li><a href="/frontend-development" style="color: white;">Frontend Development</a></li>
+                <li><a href="/backend-development" style="color: white;">Backend Development</a></li>
+                <li><a href="/full-stack-development" style="color: white;">Full-Stack Development</a></li>
+                <li><a href="/mobile-app-development" style="color: white;">Mobile App Development</a></li>
+                <li><a href="/cloud-computing" style="color: white;">Cloud Computing</a></li>
+                <li><a href="/data-science-analytics" style="color: white;">Data Science & Analytics</a></li>
+                <li><a href="/cybersecurity" style="color: white;">Cybersecurity</a></li>
+                <li><a href="/ai-ml" style="color: white;">AI & Machine Learning</a></li>
+                <li><a href="/devops-engineering" style="color: white;">DevOps Engineering</a></li>
+            </ul>
+
+            <!-- Second Column -->
+            <ul class="col-md-4">
+                <li><a href="/ui-ux-design" style="color: white;">UI/UX Design</a></li>
+                <li><a href="/product-management" style="color: white;">Product Management</a></li>
+                <li><a href="/software-testing-qa" style="color: white;">Software Testing & QA</a></li>
+                <li><a href="/it-support" style="color: white;">IT Support</a></li>
+                <li><a href="/database-administration" style="color: white;">Database Administration</a></li>
+                <li><a href="/game-development" style="color: white;">Game Development</a></li>
+                <li><a href="/blockchain-development" style="color: white;">Blockchain Development</a></li>
+                <li><a href="/technical-writing" style="color: white;">Technical Writing</a></li>
+                <li><a href="/network-administration" style="color: white;">Network Administration</a></li>
+            </ul>
+
+            <!-- Third Column -->
+            <ul class="col-md-4">
+                <li><a href="/it-project-management" style="color: white;">IT Project Management</a></li>
+                <li><a href="/hardware-engineering" style="color: white;">Hardware Engineering</a></li>
+                <li><a href="/systems-administration" style="color: white;">Systems Administration</a></li>
+                <li><a href="/ar-vr-development" style="color: white;">AR/VR Development</a></li>
+                <li><a href="/ecommerce-development" style="color: white;">E-Commerce Development</a></li>
+                <li><a href="/web-development" style="color: white;">Web Development</a></li>
+                <li><a href="/embedded-systems" style="color: white;">Embedded Systems</a></li>
+                <li><a href="/data-engineering" style="color: white;">Data Engineering</a></li>
+                <li><a href="/machine-vision" style="color: white;">Machine Vision</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+    <footer class="custom-footer">
+        <div class="container">
+            <!-- Top section with links -->
+             <div class="footer-links">
+                <a href="/privacy-policy" class="footer-link">Privacy Policy</a>
+                <span>|</span>
+                <a href="/terms-of-use" class="footer-link">Terms of Use</a>
+                <span>|</span>
+                <a href="/contact-us" class="footer-link">Contact Us</a>
+            </div>
+            <!-- Divider line -->
+             <hr class="footer-divider">
+             <!-- Bottom section with copyright -->
+              <p class="footer-text">© 2025 TechConnect. All rights reserved.</p>
+            </div>
+        </footer>
 
     <!-- JavaScript and Bootstrap Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-</body>
-</html>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    </body>
+    </html>

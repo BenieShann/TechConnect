@@ -2,13 +2,8 @@
 
 {% block content %}
   <!-- home.html -->
-  <form action="/search" method="GET">
-  <input type="text" name="query" placeholder="Search..." required>
-  <button type="submit">Search</button>
-  </form>
- 
-    <h2 class="text-center mb-4">Welcome, {{ current_user.username }}!</h2>
-    <p class="text-center mb-4">Here are some job listings you might be interested in:</p>
+   
+    <h2 class="text-center mb-4">Here are some job listings you might be interested in, {{ current_user.username }}</h2>
     
     <!-- Display Job Listings -->
     <div class="row g-4">
@@ -20,7 +15,6 @@
                             <h3 class="card-title">{{ job.title }}</h3>
                             <p class="card-text">{{ job.description[:150] }}...</p>
                             <p class="company"><strong>Company:</strong> {{ job.company_name }}</p>
-                            <p class="category"><strong>Category:</strong> {{ job.category }}</p>
                             <a href="{{ url_for('apply_for_job', job_id=job.id) }}" class="btn btn-success w-100">Apply</a>
                         </div>
                     </div>
@@ -29,5 +23,9 @@
         {% else %}
             <p class="text-center">No jobs available at the moment.</p>
         {% endif %}
+        {% if not jobs %}
+            <div class="alert alert-warning text-center">No jobs match your search. Try different keywords!</div>
+        {% endif %}
+
     </div>
 {% endblock %}
