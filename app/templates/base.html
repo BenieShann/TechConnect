@@ -98,7 +98,7 @@
         <div class="navbar-container d-flex justify-content-between w-100">
             <!-- Logo -->
             <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
-                <img src="{{ url_for('static', filename='images/TechConnect logo.jpg') }}" alt="TechConnect Logo" class="logo me-2" style="height: 120px;">
+                <img src="{{ url_for('static', filename='images/TechConnect logo.jpg') }}" alt="TechConnect Logo" class="logo me-2" style="height: 65px;">
             </a>
 
         <!-- Navbar links (About, Jobs, Contact) and Links at the far right (Register, Login) -->
@@ -115,10 +115,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('jobs') }}">Jobs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
-                </li>
+
 
                 <!-- Right side links (Register, Login) -->
                 {% if current_user.is_authenticated %}
@@ -181,7 +178,6 @@
                 background-size: cover; 
                 background-position: center; 
                 padding: 40px 20px; 
-                color: black;">
 
     <!-- Link to CSS file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
