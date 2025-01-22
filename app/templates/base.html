@@ -46,7 +46,7 @@
             background-image: url('{{ url_for('static', filename='images/background-body.jpg') }}');
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 10px rgb(247, 12, 129);
+            box-shadow: 0 4px 10px rgba(4, 8, 228, 0.82);
             transition: box-shadow 0.3s;
             height: 100%;
         }
@@ -75,7 +75,7 @@
             .job-card a {
             text-decoration: none;
             color: #000;
-            background-color:rgb(3, 126, 109);
+            background-color:rgb(42, 148, 235);
             padding: 10px;
             border-radius: 5px;
             font-weight: bold;
@@ -86,7 +86,7 @@
         }
 
         .job-card a:hover {
-            background-color:rgb(73, 11, 40);
+            background-color:rgb(10, 82, 238);
         }
     </style>
 </head>
@@ -98,7 +98,7 @@
         <div class="navbar-container d-flex justify-content-between w-100">
             <!-- Logo -->
             <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
-                <img src="{{ url_for('static', filename='images/TechConnect logo.jpg') }}" alt="TechConnect Logo" class="logo me-2" style="height: 65px;">
+                <img src="{{ url_for('static', filename='images/TechConnect logo.jpg') }}" alt="TechConnect Logo" class="logo me-2" style="height: 70px;">
             </a>
 
         <!-- Navbar links (About, Jobs, Contact) and Links at the far right (Register, Login) -->
@@ -115,7 +115,10 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('jobs') }}">Jobs</a>
-
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
+                </li>
 
                 <!-- Right side links (Register, Login) -->
                 {% if current_user.is_authenticated %}
