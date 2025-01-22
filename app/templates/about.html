@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title | default('TechConnect') }}</title>
+
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='about.css') }}">
+
+    <style>
+        /* General Styles */
+        body {
+            background-image: url('{{ url_for("static", filename='images/2.jpg') }}');
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #fff;
+        }
+
+        header {
+            background-color: rgba(10, 64, 117, 0.9);
+            color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 4px 6px rgb(3, 126, 241);
+        }
+
+        .navbar-brand {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fff !important;
+        }
+
+        .nav-link {
+            color: #ddd !important;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #00aaff !important;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(to left, rgba(135, 146, 144, 0.66),rgb(23, 85, 155));
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #00aaff;
+        }
+
+        .about-section {
+            padding: 60px 20px;
+            background: linear-gradient(to right, rgba(135, 146, 144, 0.66),rgb(23, 85, 155));
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .about-image img {
+            border-radius: 10px;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #bbb;
+            padding: 40px 20px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #00aaff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:rgb(18, 74, 138); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.77);">
+            <div class="container justify-content-center">
+                <a href="/" class="navbar-brand text-center" style="font-family: 'Orbitron', sans-serif; font-size: 3rem; letter-spacing: 1.5px; color: #0dcaf0; text-shadow: 0 2px 9px rgba(13, 202, 240, 0.8);">
+                    TechConnect
+                </a>
+            </div>
+        </nav>
+    </header>
+    
+
+   <!-- Hero Section -->
+    <!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left Column: Text Content -->
+            <div class="col-md-6 hero-content">
+                <h1>Welcome to <span class="highlight">TechConnect</span></h1>
+                <p class="tagline">Your Ultimate Destination for Tech Careers in Kenya and Beyond</p>
+                <p>
+                    Discover endless possibilities in the tech industry with TechConnect. 
+                    We connect innovative talent with top-tier companies, bridging the gap 
+                    to incredible opportunities. Whether you're a seasoned expert or a budding enthusiast, 
+                    this is where your tech career thrives.
+                </p>
+                <p class="cta">
+                    Browse roles in software development, data science, UI/UX design, cloud engineering, 
+                    and more. We handpick job listings to ensure you find opportunities tailored to your skills 
+                    and aspirations.
+                </p>
+                <a href="/jobs" class="btn btn-primary btn-lg mt-3">Explore Jobs Now</a>
+            </div>
+
+            <!-- Right Column: Image or Visual -->
+            <div class="col-md-6 text-center">
+                <img src="{{ url_for("static", filename="images/salut.jpg") }}" alt="Tech Careers" class="img-fluid salut-image">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- About Section -->
+    <main>
+        <div class="container about-section">
+            <h2>About TechConnect</h2>
+            <p>
+                TechConnect is a leading platform dedicated to bridging the gap between tech enthusiasts and companies in need of skilled professionals. Founded with the vision of creating a unified space for innovation and growth, TechConnect has grown to become a trusted resource for job seekers and employers alike. Whether you are a seasoned developer, a creative designer, or a data scientist eager to make an impact, our platform provides tailored opportunities that align with your career aspirations.
+            </p>
+
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <h3>Our Mission</h3>
+                    <p>
+                        At TechConnect, we believe that every individual has the potential to excel in their career. Our mission is to empower tech professionals by connecting them with organizations that value innovation, creativity, and expertise. By fostering these connections, we aim to drive technological advancement and economic growth within Kenya and beyond.
+                    </p>
+                    <p>
+                        We are committed to making the job search process seamless, efficient, and rewarding for both candidates and employers. From remote work opportunities to on-site roles in major cities like Nairobi, Mombasa, and Kisumu, we cater to a wide range of preferences and professional needs.
+                    </p>
+                </div>
+                <div class="col-md-6 about-image">
+                    <img src="{{ url_for("static", filename='images/about.jpg') }}" alt="About TechConnect" class="img-fluid">
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h3>What Sets Us Apart</h3>
+                <p>
+                    TechConnect stands out as a platform that is not just about job listings but also about building a vibrant tech community. Here’s what makes us unique:
+                </p>
+                <ul>
+                    <li>Comprehensive job listings covering various tech roles, including AI engineering, software development, data analytics, and UI/UX design.</li>
+                    <li>An intuitive and user-friendly interface that simplifies job searches and applications.</li>
+                    <li>Exclusive partnerships with top companies and startups in the tech industry.</li>
+                    <li>Resources and tips to help candidates improve their skills and prepare for interviews.</li>
+                </ul>
+
+                <h3>Join Our Community</h3>
+                <p>
+                    Becoming a part of TechConnect means more than just finding a job. It’s about joining a network of forward-thinking professionals and organizations shaping the future of technology. Sign up today and take the first step toward unlocking your full potential in the tech world.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links text-center mb-3">
+                <a href="/privacy-policy">Privacy Policy</a>
+                <span>|</span>
+                <a href="/terms-of-use">Terms of Use</a>
+                <span>|</span>
+                <a href="/contact">Contact Us</a>
+            </div>
+            <p class="text-center">&copy; 2025 TechConnect. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
