@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact TechConnect for inquiries, partnerships, advertising, or support.">
+    <title>Contact Us - TechConnect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/semployer.css') }}">
+
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg,rgb(36, 90, 129),rgb(145, 160, 167));
+            color: #333;
+        }
+
+        .hero {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .hero img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px 30px;
+            border-radius: 12px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            background: linear-gradient(135deg, #d9e3f0, #a3b4c7, #8094b1);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .contact-info, .social-links {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h2, .social-links h2 {
+            color: #002244;
+            border-left: 4px solid #0077c8;
+            padding-left: 10px;
+        }
+
+        .contact-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-info ul li {
+            padding: 8px 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-info ul li a {
+            color: #0077c8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-info ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            text-align: center;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: #0077c8;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.1);
+            background:rgba(165, 16, 153, 0.42);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #90caf9;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
+            <img src="{{ url_for('static', filename='images/TechConnect logo.jpg') }}" alt="TechConnect Logo" class="logo me-2" style="height: 60px;">
+        </a>
+
+        <!-- Toggler for Mobile View -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto d-flex align-items-center">
+                <!-- Search Bar -->
+                <li class="nav-item me-3">
+                    <form class="d-flex" action="/search" method="GET">
+                        <input class="form-control form-control-sm me-2 rounded-pill" type="search" name="query" placeholder="Search..." aria-label="Search">
+                        <button class="btn btn-outline-light btn-sm rounded-pill" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
+                </li>
+
+                <!-- Left Side Links -->
+                <li class="nav-item">
+                    <a class="nav-link text-light fw-light" href="{{ url_for('jobs') }}">Jobs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light fw-light" href="{{ url_for('about') }}">About</a>
+                </li>
+
+                <!-- Right Side Links -->
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-light fw-light" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ current_user.username }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('profile') }}">Profile</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link text-light fw-light" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-outline-light btn-sm ms-2 rounded-pill px-3" href="{{ url_for('register') }}">Register</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<main>
+    <section class="container">
+        <div class="section-wrapper">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2>How Can We Help?</h2>
+                <p>Reach out to TechConnect for any of the following:</p>
+                <ul>
+                    <li>Questions about our services</li>
+                    <li>Advertising opportunities</li>
+                    <li>Partnership discussions</li>
+                    <li>Error or anomaly reports</li>
+                </ul>
+                <p><strong>Email:</strong> <a href="mailto:TechConnect@gmail.com">TechConnect@gmail.com</a></p>
+                <p><strong>Visit Us:</strong> ABC Towers, Koinange Street, Nairobi, Kenya</p>
+                <p><strong>Phone:</strong> <a href="tel:+254115957511">+254 115 957 511</a></p>
+            <!-- Social Links -->
+            <div class="social-links">
+                <h2>Connect With Us</h2>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div> 
+            </div>
+
+            <section class="contact-form-section">
+                <h2>Contact Us</h2>
+                <form action="#" method="POST" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name *</label>
+                            <input type="text" id="first-name" name="first_name" placeholder="Enter your first name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name *</label>
+                            <input type="text" id="last-name" name="last_name" placeholder="Enter your last name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="" disabled selected>Select a Subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Support</option>
+                                <option value="partnership">Partnership</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn">Send Message</button>
+                    </div>
+            </div> 
+                </form>
+            </section>
+        </div> 
+    </section>
+</main>
+
+<footer>
+</div>
+      <!-- Divider line -->
+       <hr class="footer-divider">
+      </div>
+
+       <div class="footer-links">
+          <a href="/privacy-policy" class="footer-link">Privacy Policy</a>
+          <span>|</span>
+          <a href="/terms-of-use" class="footer-link">Terms of Use</a>
+          <span>|</span>
+          <a href="/contact-us" class="footer-link">Contact Us</a>
+      </div>
+     
+       <!-- Bottom section with copyright -->
+       <p class="footer-text">© 2025 TechConnect. All rights reserved.</p>
+                    
+       </div>
+  </footer>
+
+</body>
+</html>

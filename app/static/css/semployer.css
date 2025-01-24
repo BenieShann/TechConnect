@@ -1,0 +1,77 @@
+.choices-container {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(to right, #f7f7f7, #ffffff);
+}
+
+.choice-card {
+    flex: 1;
+    width: 350px;
+    height: 200px;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+.choice-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.candidate {
+    background: #1026a554;
+}
+
+.employer {
+    background: #0ab1bd54;
+
+}
+
+.choice-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.choice-description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.btn-secondary {
+    background: #1277c9d7;
+    color: #fff
+}
+
+.btn-secondary:hover {
+    background: #061df1;
+      
+}
+
+.btn-primary {
+    background: #aa13b86b;
+    color: #000000;
+
+}
+
+.btn-primary:hover {
+    background: #c004e6c2;
+}

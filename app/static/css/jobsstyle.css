@@ -106,7 +106,7 @@ body {
 .job-card p {
     font-size: 18px;
     color: #111;
-    margin-bottom: 10px;
+    margin-bottom: 900px;
 }
 .job-card .apply-btn {
     display: inline-block;
@@ -122,21 +122,41 @@ body {
     background-color: #2c3e50;
 }
 
-/* Footer Styles */
-footer {
-    background-color: darkolivegreen;
-    color: #2dad13;
-    padding: 20px;
+.custom-footer {
+    background-color: #000000f6; 
+    color: rgb(253, 253, 253);
+    padding: 40px 0; 
+    font-size: 66px;
+}
+
+.custom-footer .container {
+    background-color: #000000f6; 
+    max-width: 1300px;
+    max-height: 700px;
+    margin: 0 auto;
+}
+
+.custom-footer .footer-links {
     text-align: center;
-    font-size: 20px;
+    margin-top: 90px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
 }
 
-footer a {
-    color: #c4e604;
+.custom-footer .footer-divider {
+    border-color: rgba(28, 97, 245, 0.3);
+    margin: 30px 0;
+}
+
+.custom-footer .footer-link {
+    color: #0878d3;
     text-decoration: none;
+    margin: 0 10px;
 }
 
-footer a:hover {
-    text-decoration: underline;
+.custom-footer .footer-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+    color: rgba(19, 84, 204, 0.6);
 }
-

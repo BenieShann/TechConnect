@@ -1,0 +1,140 @@
+.social-links img {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.social-links img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+<style>
+/* General Styles */
+.contact-form-section {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background: linear-gradient(to right, #be3c93, #3498db);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(192, 18, 183, 0.1);
+    font-family: 'Roboto', sans-serif;
+}
+
+.contact-form-section h2 {
+    text-align: center;
+    color: #1e88e5;
+    margin-bottom: 20px;
+}
+
+/* Form Layout */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    flex: 1 1 100%;
+}
+
+.form-group label {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    font-size: 17px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #1e88e5;
+    box-shadow: 0 0 4px rgba(30, 136, 229, 0.4);
+}
+
+.form-group textarea {
+    resize: none;
+    height: 120px;
+}
+
+.btn {
+    padding: 12px 20px;
+    background: #1e88e5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #1565c000;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+    }
+}
+
+.navbar-container {
+    position: relative;
+}
+
+.navbar-brand {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: 0px;
+}
+
+.logo {
+    height: auto;
+    padding-left: 0px;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 20px; 
+}
+
+.me-auto {
+    margin-right: auto;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
