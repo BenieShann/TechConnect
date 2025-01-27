@@ -130,25 +130,53 @@
                     <a class="nav-link text-light fw-light" href="{{ url_for('contact') }}">Contact</a>
                 </li>
 
+                
                 <!-- Right Side Links -->
-                {% if current_user.is_authenticated %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-light fw-light" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ current_user.username }}
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="{{ url_for('profile') }}">Profile</a></li>
-                            <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
-                        </ul>
-                    </li>
+                {% if username %}
+                <li class="nav-item dropdown">
+                    
+                    <a class="nav-link dropdown-toggle text-light fw-semibold d-flex align-items-center gap-3" 
+                    href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ user_profile_image_url or url_for('static', filename='images/profile.png') }}" 
+                            alt="User Avatar" class="rounded-circle" width="40" height="40">
+                        <div>
+                            <span class="d-block text-white fs-5">{{ username }}</span> 
+                            <small class="text-white-50 fs-6">{{ email }}</small> 
+                        </div>
+                    </a>
+                    
+                    
+                    <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-4 animate__animated animate__fadeIn" aria-labelledby="userDropdown">
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-2" href="{{ url_for('profile') }}">
+                                <i class="bi bi-person-circle"></i> Profile
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-2 text-danger" href="{{ url_for('logout') }}">
+                                <i class="bi bi-box-arrow-right"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link text-light fw-light" href="{{ url_for('login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-outline-light btn-sm ms-2 rounded-pill px-3" href="{{ url_for('register') }}">Register</a>
-                    </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link text-light fw-light fs-5" href="{{ url_for('login') }}">
+                        <i class="bi bi-box-arrow-in-right"></i> Login
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-light btn-sm ms-2 rounded-pill px-3" href="{{ url_for('register') }}">
+                        <i class="bi bi-person-plus-fill"></i> Register
+                    </a>
+                </li>
                 {% endif %}
+
+
             </ul>
         </div>
     </div>

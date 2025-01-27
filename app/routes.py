@@ -1,10 +1,13 @@
-from flask import render_template, redirect, url_for, request, flash, Blueprint
+import uuid
+from flask import render_template, redirect, session, url_for, request, flash, Blueprint
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 from flask_mail import Message
+
+from app.data_controller import DataController
 from . import db, mail
-from .models import User, Job, Application
+from .models import User, Job, Application, UserModel
 from .forms import LoginForm, RegisterForm, ForgotPasswordForm, ResetPasswordForm 
 import os, logging
 from werkzeug.utils import secure_filename
@@ -19,16 +22,20 @@ routes = Blueprint('routes', __name__)
 class Routes:
     def __init__(self, app):
         self.app = app
+        self.data_controller = DataController()
+
     # def register_routes(app):
 
         # Home Page Route
         @app.route('/')
         def home():
             try:
+                username = session.get('username', None)
+                email = session.get('email', None)
                 jobs = Job.query.all()  # Retrieve all jobs from the database
                 if not jobs:
                     flash("No jobs found! Try adding some test jobs.", "warning")
-                return render_template('home.html', jobs=jobs)
+                return render_template('home.html', jobs=jobs,  username=username, email=email)
             except Exception as e:
                 flash(f"Error retrieving jobs: {e}", "danger")
                 return render_template('home.html', jobs=[])
@@ -72,9 +79,28 @@ class Routes:
         def contact():
             return render_template('contact.html')
 
-        # Login Route
         @app.route('/login', methods=['GET', 'POST'])
         def login():
+            username = request.args.get('username', '')  
+            email = request.args.get('email', '')        
+            password = request.args.get('password', '')        
+
+            if request.method == 'POST':
+                username = request.form.get('username')
+                password = request.form.get('password')
+                user_authenticated, user_id, user_role   = DataController.authenticate_user(self.data_controller, username, password)
+                if user_authenticated:
+                    email = next(
+                        (user["email"] for user in self.data_controller.users_data if user["username"] == username),
+                        ""
+                    )
+                    session['user_id'] = user_id
+                    session['username'] = username
+                    session['email'] = email
+                    return redirect(url_for('home'))
+                    
+            return render_template('login.html', username=username, email=email, password=password)
+    
             form = LoginForm()  # WTForms to handle the form
             if form.validate_on_submit():  # If the form is submitted and valid
                 user = User.query.filter_by(username=form.username.data).first()
@@ -84,6 +110,8 @@ class Routes:
                     return redirect(url_for('home'))
                 else:
                     flash('Login unsuccessful. Please check your username and password.', 'danger')
+
+                    
             return render_template('login.html', form=form)
 
         # Register Route
@@ -95,18 +123,41 @@ class Routes:
                 # if form.validate_on_submit():
                 # hashed_password = generate_password_hash(form.password.data, method='sha256')
                 new_user = User(username=form.username.data, email=form.email.data, password=form.email.data)
+
                 db.session.add(new_user)
-                print(new_user)
-                db.session.commit()
+                print(f"this is the new user: {new_user}")
+                # db.session.commit()
                 flash('Your account has been created! You can now log in.', 'success')
                 print("Registering 2.")
-                return redirect(url_for('login'))
-            
 
+                username = request.form.get('username')
+                password = request.form.get('password')
+                email = request.form.get('email')
+                role = request.form.get('role') 
+                user_id = str(uuid.uuid4())
+
+                user_model = UserModel(user_id, username, password, email, role)
+                print(f"This is 2025 {user_model}")
+                registration_successful = DataController.register_user(self.data_controller, user_model)
+
+                if registration_successful:
+                    session['user_id'] = user_id
+                    session['username'] = username
+                    flash('Registration Successful! You can now log in.', 'success')
+                    # return redirect(url_for('success', message='Registration Successful!', redirect_url=url_for('login')))
+                    return redirect(url_for('login', username=username, email=email, password=password))
+    
             print("Registering 1.")
             
             return render_template('register.html', form=form)
         
+
+        @app.route('/logout')
+        def logout():
+            session.clear()  
+            logout_user()
+            flash('You have been logged out.', 'info')
+            return redirect(url_for('home'))
 
 
         # Forgot Password Route
@@ -148,13 +199,7 @@ class Routes:
                     return redirect(url_for('login'))
             return render_template('reset_password.html', form=form)
 
-        # Logout Route
-        @app.route('/logout')
-        @login_required
-        def logout():
-            logout_user()
-            flash('You have been logged out.', 'info')
-            return redirect(url_for('home'))
+        
 
         # Profile Page Route
         @app.route('/profile')

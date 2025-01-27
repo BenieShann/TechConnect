@@ -15,6 +15,19 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return f"<User {self.username}>"
 
+class UserModel:
+    def __init__(self, user_id, username, password, email, role='user'):
+        self.user_id = user_id
+        self.username = username
+        self.password = password
+        self.email = email
+        self.role = role
+    def __str__(self):
+            return f"UserModel(user_id={self.user_id}, username={self.username}, email={self.email}, role={self.role})"
+    def __repr__(self):
+        return self.__str__()
+
+
 # Job Model - This represents a job listing on the board
 class Job(db.Model):
     __tablename__ = 'jobs'  # Explicitly defining table name
