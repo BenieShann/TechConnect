@@ -10,18 +10,35 @@ from collections import defaultdict
 class DataController:
     def __init__(self):
         self.users_data_path = 'user_data/customers_db.json'
+        self.jobs_data_path = 'user_data/jobs_data.json'
         self.users_data = self.load_or_create_users_data()
+        self.jobs_data = self.load_or_create_jobs_data()
     
     def get_all_users(self):
         return self.users_data 
+    
+    def get_all_jobs(self):
+        return self.jobs_data_path
     
     def save_users_data(self):
         with open(self.users_data_path, "w") as file:
             # json.dump(self.user_model, file, indent=4)
             json.dump(self.users_data, file, indent=4)
 
+
+    def save_jobs_data(self):
+        with open(self.jobs_data_path, "w") as file:
+            # json.dump(self.user_model, file, indent=4)
+            json.dump(self.jobs_data, file, indent=4)
+
+
     def load_users_data(self):
         with open(self.users_data_path, "r") as file:
+            return json.load(file)
+        
+
+    def load_jobs_data(self):
+        with open(self.jobs_data_path, "r") as file:
             return json.load(file)
 
     def load_or_create_users_data(self):
@@ -35,6 +52,19 @@ class DataController:
         else:
             self.users_data = self.load_users_data()
         return self.users_data
+    
+
+    def load_or_create_jobs_data(self):
+        directory = os.path.dirname(self.jobs_data_path)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+
+        if not os.path.exists(self.users_data_path):
+            self.jobs_data = []
+            self.save_jobs_data()
+        else:
+            self.users_data = self.load_jobs_data()
+        return self.jobs_data
 
 
     def register_user(self, user_model):
@@ -52,4 +82,5 @@ class DataController:
             if user["username"] == username and user["password"] == password:
                 return True, user["user_id"], user.get("role", "user")  
         return False, None, None
+
     

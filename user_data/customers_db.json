@@ -5,5 +5,12 @@
         "password": "a",
         "email": "a@gmail.com",
         "role": "user"
+    },
+    {
+        "user_id": "a70d98af-959c-4339-abe3-8fd0de1f6723",
+        "username": "cat",
+        "password": "cat",
+        "email": "cat@gmail.com",
+        "role": "user"
     }
 ]

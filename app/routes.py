@@ -79,6 +79,13 @@ class Routes:
         def contact():
             return render_template('contact.html')
 
+
+        @app.route('/jobss')
+        def jobss():
+            all_jobs = DataController.load_jobs_data(self.data_controller)
+            print(all_jobs)
+            return render_template('jobs.html')
+
         @app.route('/login', methods=['GET', 'POST'])
         def login():
             username = request.args.get('username', '')  

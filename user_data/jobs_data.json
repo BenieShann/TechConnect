@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Software Engineer",
+        "description": "Develop and maintain software solutions.",
+        "company_name": "TechCorp Solutions",
+        "location": "Nairobi, Kenya",
+        "job_type": "Full-time",
+        "salary": "KSh 100,000 - 120,000 per month",
+        "category": "Software Development"
+    },
+    {
+        "title": "Data Scientist",
+        "description": "Analyze large datasets to extract insights and predictions.",
+        "company_name": "Holberton School",
+        "location": "Nairobi, Kenya",
+        "job_type": "Full-time",
+        "salary": "KSh 80,000 - 100,000 per month",
+        "category": "Data Science"
+    }
+]

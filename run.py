@@ -10,6 +10,6 @@ if __name__ == '__main__':
     with app.app_context():
     
         page_controller = Routes(app)
-        app.run(debug=True, port=8005)
+        app.run(debug=True, port=8009)
         
     
