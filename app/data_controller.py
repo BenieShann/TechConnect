@@ -13,7 +13,7 @@ class DataController:
         self.jobs_data_path = 'user_data/jobs_data.json'
         self.users_data = self.load_or_create_users_data()
         self.jobs_data = self.load_or_create_jobs_data()
-    
+        
     def get_all_users(self):
         return self.users_data 
     
@@ -63,7 +63,7 @@ class DataController:
             self.jobs_data = []
             self.save_jobs_data()
         else:
-            self.users_data = self.load_jobs_data()
+            self.jobs_data = self.load_jobs_data()
         return self.jobs_data
 
 

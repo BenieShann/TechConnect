@@ -38,58 +38,6 @@
             text-align: center;
         }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 600px;
-            color: #000;
-        }
-
-        .job-card {
-            background-image: url('{{ url_for('static', filename='images/try.jpg') }}');    
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(4, 8, 228, 0.82);
-            transition: box-shadow 0.3s;
-            height: 100%;
-        }
-
-        .job-card:hover {
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .job-card h3 {
-            font-size: 30px;
-            color: #000;
-            margin-bottom: 10px;
-        }
-
-        .job-card p {
-            font-size: 18px;
-            color: #111;
-            margin-bottom: 10px;
-        }
-
-        .job-card .company {
-            font-weight: bold;
-            color:rgb(1, 9, 10);
-        }
-
-            .job-card a {
-            text-decoration: none;
-            color: #000;
-            background: #1277c9bd;
-            padding: 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-align: center;
-            display: block;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
-        }
-
-        .job-card a:hover {
-            background-color:rgb(10, 82, 238);
-        }
     </style>
 </head>
 <body>
@@ -197,175 +145,422 @@
     </div>
 </nav>
 
-
  <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Welcome to TechConnect</h1>
-            <p>Your gateway to the best tech jobs.</p>
-            <div class="hero-buttons">
-                <a href="{{ url_for('jobs') }}" class="btn btn-primary">Explore Jobs</a>
-                <a href="{{ url_for('register') }}" class="btn btn-secondary">Get Started</a>
-            </div>
+ <section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to TechConnect</h1>
+        <p>Your gateway to the best tech jobs.</p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('jobs') }}" class="btn btn-primary">Explore Jobs</a>
+            <a href="{{ url_for('register') }}" class="btn btn-secondary">Get Started</a>
         </div>
-    </section>
+    </div>
+</section>
 
-      <!-- Candidate and Employer Choices -->
-<section class="choices-container">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Tech Jobs Landing Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+               .hero-section {
+            background: linear-gradient(to Left,rgb(70, 64, 64),rgba(101, 147, 153, 0.97));
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+      
+
+        .feature {
+            font-size: 1.5rem;
+        }
+        .features-section {
+            font-size: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(81, 131, 172, 0.31);
+            padding: 50px 20px;
+            background: linear-gradient(to right,rgb(167, 167, 167),rgb(8, 102, 226));
+        }  
+        .stats-section {
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(64, 109, 151, 0.1);
+            background: linear-gradient(to right,rgb(10, 160, 206),rgb(34, 37, 34));
+        }
+        
+        .testimonials {
+            padding: 50px 50px;
+            font-size: 2rem;
+            background: linear-gradient(to left,rgb(54, 57, 58),rgb(14, 125, 180));
+            box-shadow: 0 4px 10px rgba(81, 131, 172, 0.31);
+
+        }
+  
+        .testimonial {
+            background: linear-gradient(to right,rgb(172, 172, 173),rgba(7, 146, 211, 0.69));
+            padding: 20px;
+            font-size: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(52, 98, 141, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero-section">
+    <h1>The Future of Tech Careers Starts Here</h1>
+</div>
+
+  <!-- Candidate and Employer Choices -->
+  <section class="choices-container">
     <div class="choice-card candidate">
         <div class="choice-content">
             <h3 class="choice-title">Looking for Your Next Opportunity?</h3>
             <p class="choice-description">Join thousands of tech professionals finding their dream jobs on TechConnect.</p>
-            <a href="/register-candidate" class="btn btn-secondary">Register as a Candidate</a>
+            <a href="/register-candidate" class="btn btn-secondary">Continue as a Candidate</a>
         </div>
     </div>
     <div class="choice-card employer">
         <div class="choice-content">
             <h3 class="choice-title">Need Top Tech Talent?</h3>
             <p class="choice-description">Connect with Kenya's best tech professionals and fill your positions faster.</p>
-            <a href="/register-employer" class="btn btn-primary">Register as an Employer</a>
+            <a href="/register-employer" class="btn btn-primary">Continue as an Employer</a>
         </div>
     </div>
 </section>
 
-    <!-- Main Content -->
-    <main>
-        <div class="container my-4">
-            {% block content %}{% endblock %}
+<div class="stats-section text-center bg-light">
+    <h2>Real-Time Metrics</h2>
+    <p>Discover new opportunities tailored just for you:</p>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>500+</h3>
+            <p>New Tech Jobs This Week</p>
         </div>
-    </main>
+        <div class="col-md-4">
+            <h3>70%</h3>
+            <p>Candidates Find Jobs in Under 30 Days</p>
+        </div>
+        <div class="col-md-4">
+            <h3>120+</h3>
+            <p>Exclusive Employer Partnerships</p>
+        </div>
+    </div>
+</div>
 
-         <!-- Job Functions Section -->
-<!-- Explore Tech Careers Section -->
+    <section id="features" class="features" style="background: linear-gradient(to left,rgba(27, 27, 27, 0.89),rgb(17, 145, 184));">
+
+<div class="feature">
+    <h3>AI-Powered Job Matching</h3>
+    <p>Find the perfect job tailored to your skills and interests.</p>
+</div>
+<div class="feature">
+    <h3>Customizable Tech Profiles</h3>
+    <p>Showcase your expertise with a sleek, professional profile.</p>
+</div>
+<div class="feature">
+    <h3>Seamless Application Tracking</h3>
+    <p>Stay on top of your applications and never miss an update.</p>
+</div>
+<div class="feature">
+    <h3>Exclusive Opportunities</h3>
+    <p>Access top-tier job postings and tech events.</p>
+</div>
+</section>
+
+
+<div class="testimonials container">
+<h2 class="text-center">What Our Users Say</h2>
+<div class="row">
+    <div class="col-md-6">
+        <div class="testimonial">
+            <p>"This platform helped me land my dream job as a front-end developer in under two weeks!"</p>
+            <strong>- Alex T.</strong>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="testimonial">
+            <p>"As a recruiter, I found top talent seamlessly and quickly. It's my go-to hiring platform."</p>
+            <strong>- Sandra K.</strong>
+        </div>
+    </div>
+</div>
+</div>
+
+<section class="testimonials">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="testimonial">   
+        <details>
+            <summary>How does TechConnect work?</summary>
+            <p>TechConnect connects job seekers with tech-related opportunities through an intuitive platform.</p>
+        </details>
+    </div>
+    <div class="testimonial">
+        <details>
+            <summary>Are all jobs tech-focused?</summary>
+            <p>Yes, TechConnect exclusively focuses on technology-related roles across various industries.</p>
+        </details>
+    </div>
+    <div class="testimonial">
+        <details>
+           <summary>How do I sign up?</summary>
+           <p>Visit our platform, create a profile, upload your resume, and start exploring tailored job openings.</p>
+        </details>
+    </div>
+    <div class="testimonial">
+        <details>
+          <summary>Is TechConnect free to use?</summary>
+          <p>Absolutely! Signing up and accessing job postings is free for all users.</p>
+        </details>
+    </div>
+    </section>
+</section>
+
 <section 
-    class="job-functions" 
-    aria-label="Explore Job Categories with TechConnect" 
-    style="
-        background-image: url('{{ url_for('static', filename='images/abc.jpg') }}'); 
-        background-size: cover; 
-        background-position: center; 
-        padding: 50px 40px; 
-        color: white; 
-        text-shadow: 0 4px 9px rgba(0, 0, 0, 0.7);
-        text-align: center;
-    ">
-    <style>
-        .job-functions a {
-            color: white;
-            text-decoration: none;
-        }
-        .job-functions a:hover {
-            text-decoration: underline;
-        }
-    </style>
+class="job-functions" 
+aria-label="Explore Job Categories with TechConnect" 
+style="
+    background-image: url('{{ url_for('static', filename='images/abc.jpg') }}'); 
+    background-size: cover; 
+    background-position: center; 
+    padding: 50px 40px; 
+    color: white; 
+    text-shadow: 0 4px 9px rgba(0, 0, 0, 0.7);
+    text-align: center;
+">
+<style>
+    .job-functions a {
+        color: white;
+        text-decoration: none;
+    }
+    .job-functions a:hover {
+        text-decoration: underline;
+    }
+</style>
+</body>
+</html>
 
-    <!-- Heading -->
-    <h2 style="font-size: 2.5rem; margin-bottom: 40px;">
-        Unlock Your Potential with TechConnect
-    </h2>
-    <p style="font-size: 1.7rem; margin-bottom: 40px;">
-        Discover cutting-edge opportunities in Kenya's growing tech landscape. Find your niche, make an impact, and innovate.
-    </p>
 
-    <!-- Job Categories Grid -->
-    <div class="categories container">
-        <div class="row justify-content-center">
-            <!-- First Column -->
-            <ul class="col-md-4 list-unstyled">
-                <li><a href="/frontend-development">🌐 Frontend Development</a></li>
-                <li><a href="/backend-development">🔧 Backend Development</a></li>
-                <li><a href="/full-stack-development">🚀 Full-Stack Development</a></li>
-                <li><a href="/mobile-app-development">📱 Mobile App Development</a></li>
-                <li><a href="/cloud-computing">☁️ Cloud Computing</a></li>
-                <li><a href="/data-science-analytics">📊 Data Science & Analytics</a></li>
-                <li><a href="/cybersecurity">🔒 Cybersecurity</a></li>
-                <li><a href="/ai-ml">🤖 AI & Machine Learning</a></li>
-                <li><a href="/devops-engineering">⚙️ DevOps Engineering</a></li>
-            </ul>
 
-            <!-- Second Column -->
-            <ul class="col-md-4 list-unstyled">
-                <li><a href="/ui-ux-design">🎨 UI/UX Design</a></li>
-                <li><a href="/product-management">📋 Product Management</a></li>
-                <li><a href="/software-testing-qa">🔍 Software Testing & QA</a></li>
-                <li><a href="/it-support">💻 IT Support</a></li>
-                <li><a href="/database-administration">📚 Database Administration</a></li>
-                <li><a href="/game-development">🎮 Game Development</a></li>
-                <li><a href="/blockchain-development">⛓️ Blockchain Development</a></li>
-                <li><a href="/technical-writing">✍️ Technical Writing</a></li>
-                <li><a href="/network-administration">🌐 Network Administration</a></li>
-            </ul>
 
-            <!-- Third Column -->
-            <ul class="col-md-4 list-unstyled">
-                <li><a href="/it-project-management">📂 IT Project Management</a></li>
-                <li><a href="/hardware-engineering">💾 Hardware Engineering</a></li>
-                <li><a href="/systems-administration">🖥️ Systems Administration</a></li>
-                <li><a href="/ar-vr-development">🕶️ AR/VR Development</a></li>
-                <li><a href="/ecommerce-development">🛒 E-Commerce Development</a></li>
-                <li><a href="/web-development">🌍 Web Development</a></li>
-                <li><a href="/embedded-systems">🤝 Embedded Systems</a></li>
-                <li><a href="/data-engineering">📂 Data Engineering</a></li>
-                <li><a href="/machine-vision">👁️ Machine Vision</a></li>
-            </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Heading -->
+<h2 style="font-size: 2.5rem; margin-bottom: 40px;">
+    Unlock Your Potential with TechConnect
+</h2>
+<p style="font-size: 1.7rem; margin-bottom: 40px;">
+    Discover cutting-edge opportunities in Kenya's growing tech landscape. Find your niche, make an impact, and innovate.
+</p>
+
+<!-- Job Categories Grid -->
+<div class="categories container">
+    <div class="row justify-content-center">
+        <!-- First Column -->
+        <ul class="col-md-4 list-unstyled">
+            <li><a href="/frontend-development">🌐 Frontend Development</a></li>
+            <li><a href="/backend-development">🔧 Backend Development</a></li>
+            <li><a href="/full-stack-development">🚀 Full-Stack Development</a></li>
+            <li><a href="/mobile-app-development">📱 Mobile App Development</a></li>
+            <li><a href="/cloud-computing">☁️ Cloud Computing</a></li>
+            <li><a href="/data-science-analytics">📊 Data Science & Analytics</a></li>
+            <li><a href="/cybersecurity">🔒 Cybersecurity</a></li>
+            <li><a href="/ai-ml">🤖 AI & Machine Learning</a></li>
+            <li><a href="/devops-engineering">⚙️ DevOps Engineering</a></li>
+        </ul>
+
+        <!-- Second Column -->
+        <ul class="col-md-4 list-unstyled">
+            <li><a href="/ui-ux-design">🎨 UI/UX Design</a></li>
+            <li><a href="/product-management">📋 Product Management</a></li>
+            <li><a href="/software-testing-qa">🔍 Software Testing & QA</a></li>
+            <li><a href="/it-support">💻 IT Support</a></li>
+            <li><a href="/database-administration">📚 Database Administration</a></li>
+            <li><a href="/game-development">🎮 Game Development</a></li>
+            <li><a href="/blockchain-development">⛓️ Blockchain Development</a></li>
+            <li><a href="/technical-writing">✍️ Technical Writing</a></li>
+            <li><a href="/network-administration">🌐 Network Administration</a></li>
+        </ul>
+
+        <!-- Third Column -->
+        <ul class="col-md-4 list-unstyled">
+            <li><a href="/it-project-management">📂 IT Project Management</a></li>
+            <li><a href="/hardware-engineering">💾 Hardware Engineering</a></li>
+            <li><a href="/systems-administration">🖥️ Systems Administration</a></li>
+            <li><a href="/ar-vr-development">🕶️ AR/VR Development</a></li>
+            <li><a href="/ecommerce-development">🛒 E-Commerce Development</a></li>
+            <li><a href="/web-development">🌍 Web Development</a></li>
+            <li><a href="/embedded-systems">🤝 Embedded Systems</a></li>
+            <li><a href="/data-engineering">📂 Data Engineering</a></li>
+            <li><a href="/machine-vision">👁️ Machine Vision</a></li>
+        </ul>
+    </div>
+</div>
+</section>
+</body>
+
+<footer class="custom-footer">
+    <div class="container">
+        <!-- Top section with links --> <!-- Footer Section -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="footer-title">About & Contact Details</h4>
+                <p>The Job Portal. Where innovative job seekers meet innovative recruiters.</p>
+                <p>ABC Towers, Koinange Street, Nairobi, Kenya.</p>
+                <p>+254 115 957 511</p>
+                <p>TechConnect@gmail.com</p>
+            </div>
+            <div class="col-md-4">
+                <h4 class="footer-title">Information</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="list-unstyled">
+                    <li><a href="#" class="text-white text-decoration-none">Job Seekers</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Employers</a></li>
+                </ul>
+            </div>
         </div>
     </div>
+</footer>
 
-</section>
-
-    <footer class="custom-footer">
-        <div class="container">
-            <!-- Top section with links --> <!-- Footer Section -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h4 class="footer-title">About & Contact Details</h4>
-                    <p>The Job Portal. Where innovative job seekers meet innovative recruiters.</p>
-                    <p>ABC Towers, Koinange Street, Nairobi, Kenya.</p>
-                    <p>+254 115 957 511</p>
-                    <p>TechConnect@gmail.com</p>
-                </div>
-                <div class="col-md-4">
-                    <h4 class="footer-title">Information</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Privacy Policy</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Terms & Conditions</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h4 class="footer-title">Quick Links</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-white text-decoration-none">Job Seekers</a></li>
-                        <li><a href="#" class="text-white text-decoration-none">Employers</a></li>
-                    </ul>
-                </div>
-            </div>
+  </div>
+        <!-- Divider line -->
+         <hr class="footer-divider">
         </div>
-    </footer>
 
-      </div>
-            <!-- Divider line -->
-             <hr class="footer-divider">
-            </div>
+         <div class="footer-links">
+            <a href="/privacy-policy" class="footer-link">Privacy Policy</a>
+            <span>|</span>
+            <a href="/terms-of-use" class="footer-link">Terms of Use</a>
+            <span>|</span>
+            <a href="/contact-us" class="footer-link">Contact Us</a>
+        </div>
+       
+         <!-- Bottom section with copyright -->
+         <div class="social">
+            <a href="#">Twitter</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">GitHub</a>
+        </div>
+         <p class="footer-text">© 2025 TechConnect. All rights reserved.</p>
+         </div>           
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</footer>
 
-             <div class="footer-links">
-                <a href="/privacy-policy" class="footer-link">Privacy Policy</a>
-                <span>|</span>
-                <a href="/terms-of-use" class="footer-link">Terms of Use</a>
-                <span>|</span>
-                <a href="/contact-us" class="footer-link">Contact Us</a>
-            </div>
-           
-             <!-- Bottom section with copyright -->
-             <p class="footer-text">© 2025 TechConnect. All rights reserved.</p>
-                          
-             </div>
-        </footer>
+<!-- JavaScript and Bootstrap Scripts -->
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
 
-    <!-- JavaScript and Bootstrap Scripts -->
-     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-    </body>
-    </html>
+
+<style>
+    :root {
+        --primary-color:rgb(170, 53, 53); 
+        --secondary-color: #1F2937; Gray */
+        --accent-color: #38BDF8; /* Electric Blue */
+        --text-color: #FFFFFF; /* White */
+        --font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        margin: 0;
+        font-family: var(--font-family);
+        color: var(--text-color);
+        background-color: var(--secondary-color);
+        overflow-x: hidden;
+    }
+
+
+    .cta button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .cta .primary {
+        background-color: var(--primary-color);
+        color: var(--text-color);
+    }
+
+    .cta .secondary {
+        background-color: var(--accent-color);
+        color: var(--secondary-color);
+    }
+
+    .cta button:hover {
+        transform: scale(1.05);
+    }
+
+    .features {
+        padding: 4rem 2rem;
+        background: var(--secondary-color);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .feature {
+        background: linear-gradient(to right,rgb(167, 173, 173),rgb(16, 69, 99));
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .feature h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--accent-color);
+    }
+
+    .feature p {
+        font-size: 1rem;
+    }
+
+</style>
+</head>
+</html>
+
+
+
+

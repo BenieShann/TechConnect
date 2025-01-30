@@ -12,5 +12,12 @@
         "password": "cat",
         "email": "cat@gmail.com",
         "role": "user"
+    },
+    {
+        "user_id": "212d0c40-76e9-4327-98de-0efca4343e0f",
+        "username": "1test",
+        "password": "123",
+        "email": "1test@gmail.com",
+        "role": "user"
     }
 ]
